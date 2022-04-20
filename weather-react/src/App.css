@@ -1,0 +1,239 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url("https://source.unsplash.com/random/1920x1080/?clouds") repeat 0 0;
+  -webkit-animation: slide 1000s linear infinite;
+}
+@-webkit-keyframes slide {
+  from { background-position: 0, 0;} 
+  to {background-position: -1920px, 0;}
+}
+.card {
+  background: #000000a0;
+  color: whitesmoke;
+  padding: 1em;
+  border: whitesmoke solid 1vh;
+  border-radius: 30px;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 10px;
+  align-items: stretch;
+}
+.card.visible{
+  height: 470px;
+  transition: height ease 1.5s;
+}
+
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+
+}
+
+.searchBar{
+  border-radius: 4px;
+  max-width:175px;
+  padding: .75em;
+  border: none;
+  outline: none;
+  background-color: rgba(30, 29, 29, 0.726);
+  color: whitesmoke;
+  font-family: inherit;
+  font-size: medium;
+  caret-color: rgba(245, 245, 245, 0.253);
+}
+.inputter{
+  display: flex;
+  align-items: center;
+}
+.searchButton{
+  margin-top: 5px;
+  margin-bottom: 0;
+  padding-left: 8px;
+  border: none;
+  color: white;
+  background-color: #00000000;
+  font-size: 1.5em;
+  transition: .5s;
+}
+.searchButton:hover{
+  color: greenyellow;
+  transition: .5s;
+}
+.city{
+  padding-right: 5px;
+}
+.date{
+  padding-left: 5px;
+}
+h1{
+  display: flex;
+  font-size: 3.5em;
+  margin:0;
+  align-items: center;
+
+}
+.weather{
+  margin-left:.5em;
+  margin-right:.5em;
+  opacity: 0%;
+}
+.weather.visible{
+  opacity: 100%;
+  transition: opacity 2s ease-in;
+}
+.pretty{
+  display: flex;
+  justify-content: space-around;
+}
+ul.hiLow{
+  margin: auto;
+  width:70px;
+  padding-left: 8px;
+  padding-right: 8px;
+  list-style-type: none;
+  font-size: small;
+  color: #f0ecec9e;
+}
+.cityTime{
+  display: flex;
+  justify-content: space-between;
+  min-height: 0;
+}
+h4{
+  display: flex;
+  color: #f0ecec9e;
+  align-items: center;
+}
+.futureWeather{
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-evenly;
+  opacity: 0%;
+}
+.futureWeather.visible{
+  opacity: 100%;
+  transition: opacity 3s ease-in;
+}
+.weekday1{
+  display: flex;
+  justify-content: left;
+  padding-left: 8px;
+}
+.weekday2{
+  display: flex;
+  justify-content: left;
+  padding-left: 8px;
+}
+.weekday3{
+  display: flex;
+  justify-content: left;
+  padding-left: 8px;
+}
+.weekday4{
+  display: flex;
+  justify-content: left;
+  padding-left: 8px;
+}
+.weekday5{
+  display: flex;
+  justify-content: left;
+  padding-left: 8px;
+}
+.weekday6{
+  display: flex;
+  justify-content: left;
+  padding-left: 8px;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+li{ 
+  display: flex;
+  justify-content:start;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(30, 29, 29, 0.726);
+  -webkit-transition: .4s;
+  transition: .4s;
+  cursor: default;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: whitesmoke;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:hover:before {
+  background-color: greenyellow;
+}
+.slider:after{
+  justify-content: center;
+  overflow: hidden;
+  content:" f °  c °";
+  color: white;
+}
+input:checked + .slider {
+  background-color: rgba(30, 29, 29, 0.726);
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px rgba(30, 29, 29, 0.726);
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+  padding-top: 5px;
+  padding-left: 11px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+@media only screen and (max-width:500px){
+  .futureWeather{
+      justify-content: start;
+      align-items:none;
+      overflow-y: scroll;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+  }
+  .futureWeather::-webkit-scrollbar { /* Chrome, Safari */
+      display: none;
+  }
+}
