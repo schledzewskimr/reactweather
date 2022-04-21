@@ -79,7 +79,15 @@ h1{
   font-size: 3.5em;
   margin:0;
   align-items: center;
-
+}
+.feelsLike{
+  display: flex;
+  align-items: flex-end;
+  margin-left: 56%;
+  font-weight: normal;
+  color: #f0ecec9e;
+  margin-bottom: 2px;
+  margin-top: 5px;
 }
 .weather{
   margin-left:.5em;
@@ -92,10 +100,10 @@ h1{
 }
 .pretty{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 ul.hiLow{
-  margin: auto;
+  margin:auto;
   width:70px;
   padding-left: 8px;
   padding-right: 8px;
@@ -114,9 +122,9 @@ h4{
   align-items: center;
 }
 .futureWeather{
-  margin-top: 2em;
+  margin-top: 1em;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   opacity: 0%;
 }
 .futureWeather.visible{

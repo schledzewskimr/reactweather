@@ -1,6 +1,6 @@
 import './App.css';
 
-function App() {
+function App() {         //   :)
   let weather = {
     
     apiKey: "21155f708c957d5fc264f08905db6419",
@@ -14,8 +14,7 @@ function App() {
     },
 
     cityFetchWeather:function(cityName){
-        fetch("https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid="+this.apiKey+"&units=imperial"
-        )
+        fetch("https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid="+this.apiKey+"&units=imperial")
         .then((response) => response.json())
         .then((data) => {
             let lat = data.coord.lat;
@@ -24,14 +23,12 @@ function App() {
             
             const cb = document.querySelector('.units');
             if(cb.checked){
-                return fetch(
-                    "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid="+this.apiKey+"&units=imperial"
-                )
+                return fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid="+this.apiKey+"&units=imperial")
                 .then((response) => response.json())
                 .then((data) => {
-                    const date = new Date().toLocaleDateString('en-us', { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"numeric"})
-
+                    const date = new Date().toLocaleDateString('en-us', { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"numeric"});
                     let temp = Math.round(data.current.temp);
+                    let feelsLike = Math.round(data.current.feels_like);
                     let description = data.current.weather[0].description;
                     let icon = data.current.weather[0].icon;
                     let tempHigh = Math.round(data.daily[0].temp.max);
@@ -47,6 +44,7 @@ function App() {
                     document.querySelector(".date").innerText = date;
                     document.querySelector(".city").innerText = cityName;
                     document.querySelector(".temperature").innerText = temp+"°";
+                    document.querySelector(".feelsLike").innerText = "feels like: "+feelsLike+"°";
                     document.querySelector(".tempHigh").innerText = "high: "+tempHigh+"°";
                     document.querySelector(".tempLow").innerText = "low: "+tempLow+"°";
                     document.querySelector(".icon").src="https://openweathermap.org/img/wn/"+icon+"@2x.png";
@@ -90,9 +88,9 @@ function App() {
                     document.querySelector(".tomorrowIcon").src="https://openweathermap.org/img/wn/"+tomorrowIcon+".png";
                     document.querySelector(".twoDaysIcon").src="https://openweathermap.org/img/wn/"+twoDaysIcon+".png";
                     document.querySelector(".threeDaysIcon").src="https://openweathermap.org/img/wn/"+threeDaysIcon+".png";
-                    document.querySelector(".fourDaysIcon").src="https://openweathermap.org/img/wn/"+fourDaysIcon+".png"
-                    document.querySelector(".fiveDaysIcon").src="https://openweathermap.org/img/wn/"+fiveDaysIcon+".png"
-                    document.querySelector(".sixDaysIcon").src="https://openweathermap.org/img/wn/"+sixDaysIcon+".png"
+                    document.querySelector(".fourDaysIcon").src="https://openweathermap.org/img/wn/"+fourDaysIcon+".png";
+                    document.querySelector(".fiveDaysIcon").src="https://openweathermap.org/img/wn/"+fiveDaysIcon+".png";
+                    document.querySelector(".sixDaysIcon").src="https://openweathermap.org/img/wn/"+sixDaysIcon+".png";
 
                     let tomorrowDate = new Date();
                     tomorrowDate.setDate(new Date().getDate() + 1);
@@ -134,6 +132,7 @@ function App() {
                     const date = new Date().toLocaleDateString('en-us', { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"numeric"})
 
                     let temp = Math.round(data.current.temp);
+                    let feelsLike = Math.round(data.current.feels_like);
                     let description = data.current.weather[0].description;
                     let icon = data.current.weather[0].icon;
                     let tempHigh = Math.round(data.daily[0].temp.max);
@@ -149,6 +148,7 @@ function App() {
                     document.querySelector(".date").innerText = date;
                     document.querySelector(".city").innerText = cityName;
                     document.querySelector(".temperature").innerText = temp+"°";
+                    document.querySelector(".feelsLike").innerText ="feels like: "+ feelsLike+"°";
                     document.querySelector(".tempHigh").innerText = "high: "+tempHigh+"°";
                     document.querySelector(".tempLow").innerText = "low: "+tempLow+"°";
                     document.querySelector(".icon").src="https://openweathermap.org/img/wn/"+icon+"@2x.png";
@@ -231,9 +231,7 @@ function App() {
     },
 
     fetchWeather: function(zipCode){
-        fetch(
-            "https://api.openweathermap.org/geo/1.0/zip?zip="+zipCode+"&appid="+this.apiKey
-        )
+        fetch("https://api.openweathermap.org/geo/1.0/zip?zip="+zipCode+"&appid="+this.apiKey)
         .then((response) => response.json())
         .then((zipData) => {
 
@@ -254,6 +252,7 @@ function App() {
                     const date = new Date().toLocaleDateString('en-us', { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"numeric"})
 
                     let temp = Math.round(data.current.temp);
+                    let feelsLike = Math.round(data.current.feels_like);
                     let description = data.current.weather[0].description;
                     let icon = data.current.weather[0].icon;
                     let tempHigh = Math.round(data.daily[0].temp.max);
@@ -269,6 +268,7 @@ function App() {
                     document.querySelector(".date").innerText = date;
                     document.querySelector(".city").innerText = name;
                     document.querySelector(".temperature").innerText = temp+"°";
+                    document.querySelector(".feelsLike").innerText ="feels like: "+ feelsLike+"°";
                     document.querySelector(".tempHigh").innerText = "high: "+tempHigh+"°";
                     document.querySelector(".tempLow").innerText = "low: "+tempLow+"°";
                     document.querySelector(".icon").src="https://openweathermap.org/img/wn/"+icon+"@2x.png";
@@ -347,15 +347,14 @@ function App() {
                     document.querySelector(".weekday6").innerText=weekday6;                })
             }
             else{
-                return fetch(
-                    "https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid="+this.apiKey+"&units=metric"
-                )
+                return fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+lon+"&appid="+this.apiKey+"&units=metric")
                 .then((response) => response.json())
                 .then((data) => {
 
                     const date = new Date().toLocaleDateString('en-us', { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"numeric"})
 
                     let temp = Math.round(data.current.temp);
+                    let feelsLike = Math.round(data.current.feels_like);
                     let description = data.current.weather[0].description;
                     let icon = data.current.weather[0].icon;
                     let tempHigh = Math.round(data.daily[0].temp.max);
@@ -372,6 +371,7 @@ function App() {
                     document.querySelector(".date").innerText = date;
                     document.querySelector(".city").innerText = name;
                     document.querySelector(".temperature").innerText = temp+"°";
+                    document.querySelector(".feelsLike").innerText ="feels like: " +feelsLike+"°";
                     document.querySelector(".tempHigh").innerText = "high: "+tempHigh+"°";
                     document.querySelector(".tempLow").innerText = "low: "+tempLow+"°";
                     document.querySelector(".icon").src="https://openweathermap.org/img/wn/"+icon+"@2x.png";
@@ -447,27 +447,14 @@ function App() {
                     let sixDaysDate = new Date();
                     sixDaysDate.setDate(new Date().getDate() + 6);
                     let weekday6=sixDaysDate.toLocaleDateString('en-us', { weekday:"short"});
-                    document.querySelector(".weekday6").innerText=weekday6;                })
+                    document.querySelector(".weekday6").innerText=weekday6;                
+                })
             }
         })
     }
-  }
-  const SearchFuncClick=()=>{
-      const searchRequest = document.querySelector(".searchBar").value;
-      document.querySelector(".weather").classList.add("visible");
-      document.querySelector(".futureWeather").classList.add("visible");
-      document.querySelector(".card").classList.add("visible");
-      if(!isNaN(searchRequest)){
-          weather.zipCode();
-      }
-      else{
-          weather.cityWeather();
-      }
-  }
-  
-    const SearchFuncKey=(onKeyUp)=>{
-      const searchRequest = document.querySelector(".searchBar").value;
-      if(onKeyUp.key === 'Enter'){
+    }
+    const SearchFuncClick=()=>{
+        const searchRequest = document.querySelector(".searchBar").value;
         document.querySelector(".weather").classList.add("visible");
         document.querySelector(".futureWeather").classList.add("visible");
         document.querySelector(".card").classList.add("visible");
@@ -477,101 +464,116 @@ function App() {
         else{
             weather.cityWeather();
         }
-      }
     }
 
-  const SwitchClick =()=>{
-      const searchRequest = document.querySelector(".searchBar").value;
-      if(!isNaN(searchRequest)){
-          weather.zipCode();
-      }
-      else{
-          weather.cityWeather();
-      }
-  }
+    const SearchFuncKey=(onKeyUp)=>{
+        const searchRequest = document.querySelector(".searchBar").value;
+        if(onKeyUp.key === 'Enter'){
+            document.querySelector(".weather").classList.add("visible");
+            document.querySelector(".futureWeather").classList.add("visible");
+            document.querySelector(".card").classList.add("visible");
+            if(!isNaN(searchRequest)){
+                weather.zipCode();
+            }
+            else{
+                weather.cityWeather();
+            }
+        }
+    }
+
+    const SwitchClick =()=>{
+        const searchRequest = document.querySelector(".searchBar").value;
+        if(!isNaN(searchRequest)){
+            weather.zipCode();
+        }
+        else{
+            weather.cityWeather();
+        }
+    }
     return (
-      <div className="card">
-          <div className = "search">
-              <div className = "inputter">
-                  <input type="text" className="searchBar" placeholder="location" spellcheck="false" onKeyUp={SearchFuncKey}/>
-                  <button className="searchButton" onClick={SearchFuncClick}>
-                      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"></path></g></svg>
-                  </button>
-              </div>
-              <label className="switch">
-                  <input type="checkbox" className="units" onClick={SwitchClick}/>
-                  <span className="slider round"></span>
-              </label>
-          </div>
-          <div className="weather">
-              <div className = "cityTime">
-                  <h2 className="city"> </h2>
-                  <h4 className="date"> </h4>
-              </div>
-              <div className="pretty">
-                  <h1 className="temperature"> </h1>
-                  <ul className="hiLow">
-                      <li className="tempHigh"></li>
-                      <li className="tempLow"></li>
-                  </ul>
-                  <img src="" alt="" className="icon"/>
-              </div>
-              <div className="description"></div>
-              <div className="humidity"></div>
-              <div className="wind"></div>
-          </div>
-          <div className="futureWeather">
-              <div className="tomorrow">
-                  <ul className="hiLow">
-                      <li className="weekday1"></li>
-                      <img src="" alt="" className="tomorrowIcon"/>
-                      <li className="tomorrowTempHigh"></li>
-                      <li className="tomorrowTempLow"></li>
-                  </ul>
-              </div>
-              <div className="twoDays">
-                  <ul className="hiLow">
-                      <li className="weekday2"></li>
-                      <img src="" alt="" className="twoDaysIcon"/>
-                      <li className="twoDaysTempHigh"></li>
-                      <li className="twoDaysTempLow"></li>
-                  </ul>
-              </div>
-              <div className="threeDays">
-                  <ul className="hiLow">
-                      <li className="weekday3"></li>
-                      <img src="" alt="" className="threeDaysIcon"/>
-                      <li className="threeDaysTempHigh"></li>
-                      <li className="threeDaysTempLow"></li>
-                  </ul>
-              </div>
-              <div className="fourDays">
-                  <ul className="hiLow">
-                      <li className="weekday4"></li>
-                      <img src="" alt="" className="fourDaysIcon"/>
-                      <li className="fourDaysTempHigh"></li>
-                      <li className="fourDaysTempLow"></li>
-                  </ul>
-              </div>
-              <div className="fiveDays">
-                  <ul className="hiLow">
-                      <li className="weekday5"></li>
-                      <img src="" alt="" className="fiveDaysIcon"/>
-                      <li className="fiveDaysTempHigh"></li>
-                      <li className="fiveDaysTempLow"></li>
-                  </ul>
-              </div>
-              <div className="sixDays">
-                  <ul className="hiLow">
-                      <li className="weekday6"></li>
-                      <img srcName="" alt="" className="sixDaysIcon"/>
-                      <li className="sixDaysTempHigh"></li>
-                      <li className="sixDaysTempLow"></li>
-                  </ul>
-              </div>
-          </div>
-      </div>
+        <div className="card">
+            <div className = "search">
+                <div className = "inputter">
+                    <input type="text" className="searchBar" placeholder="location" spellcheck="false" onKeyUp={SearchFuncKey}/>
+                    <button className="searchButton" onClick={SearchFuncClick}>
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"></path></g></svg>
+                    </button>
+                </div>
+                <label className="switch">
+                    <input type="checkbox" className="units" onClick={SwitchClick}/>
+                    <span className="slider round"></span>
+                </label>
+            </div>
+            <div className="weather">
+                <div className = "cityTime">
+                    <h2 className="city"> </h2>
+                    <h4 className="date"> </h4>
+                </div>
+                <div className="pretty">
+                    <h1 className="temperature"> </h1>
+                    <ul className="hiLow">
+                        <li className="tempHigh"></li>
+                        <li className="tempLow"></li>
+                    </ul>
+                    <img src="" alt="" className="icon"/>
+                </div>
+                <h2 className="feelsLike"> </h2>
+                    <div className="description"></div>
+                    <div className="humidity"></div>
+                    <div className="wind"></div>
+            </div>
+            <div className="futureWeather">
+            <div className="tomorrow">
+                <ul className="hiLow">
+                    <li className="weekday1"></li>
+                    <img src="" alt="" className="tomorrowIcon"/>
+                    <li className="tomorrowTempHigh"></li>
+                    <li className="tomorrowTempLow"></li>
+                </ul>
+            </div>
+            <div className="twoDays">
+                <ul className="hiLow">
+                    <li className="weekday2"></li>
+                    <img src="" alt="" className="twoDaysIcon"/>
+                    <li className="twoDaysTempHigh"></li>
+                    <li className="twoDaysTempLow"></li>
+                </ul>
+            </div>
+            <div className="threeDays">
+                <ul className="hiLow">
+                    <li className="weekday3"></li>
+                    <img src="" alt="" className="threeDaysIcon"/>
+                    <li className="threeDaysTempHigh"></li>
+                    <li className="threeDaysTempLow"></li>
+                </ul>
+            </div>
+            <div className="fourDays">
+                <ul className="hiLow">
+                    <li className="weekday4"></li>
+                    <img src="" alt="" className="fourDaysIcon"/>
+                    <li className="fourDaysTempHigh"></li>
+                    <li className="fourDaysTempLow"></li>
+                </ul>
+            </div>
+            <div className="fiveDays">
+                <ul className="hiLow">
+                    <li className="weekday5"></li>
+                    <img src="" alt="" className="fiveDaysIcon"/>
+                    <li className="fiveDaysTempHigh"></li>
+                    <li className="fiveDaysTempLow"></li>
+                </ul>
+            </div>
+            <div className="sixDays">
+                <ul className="hiLow">
+                    <li className="weekday6"></li>
+                    <img srcName="" alt="" className="sixDaysIcon"/>
+                    <li className="sixDaysTempHigh"></li>
+                    <li className="sixDaysTempLow"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     );
-  }
+}
 
 export default App;
